@@ -2,14 +2,19 @@
 let config = false
 let id2 = ""
 game.setScore(0)
-game.showScore()
 radio.setGroup(1)
+radio.setTransmitPower(7)
 id2 = "A"
 music.setBuiltInSpeakerEnabled(true)
 music.setVolume(255)
 let attente_reponse = false
+music.startMelody(music.builtInMelody(Melodies.Entertainer), MelodyOptions.OnceInBackground)
 basic.forever(function on_forever() {
-    game.showScore()
+    
+    if (!attente_reponse) {
+        basic.showNumber(game.score())
+    }
+    
     
 })
 //  appui sur le buzzer
@@ -18,13 +23,15 @@ input.onPinPressed(TouchPin.P0, function on_pin_pressed_p0() {
     if (!attente_reponse) {
         radio.sendValue(id2, 1)
         attente_reponse = true
-        music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Once)
+        soundExpression.spring.playUntilDone()
+        // music.start_melody(music.built_in_melody(Melodies.PUNCHLINE), MelodyOptions.ONCE_IN_BACKGROUND)
         for (let i = 0; i < 6; i++) {
             animationCarre()
         }
-        pause(5000)
-        game.showScore()
+        pause(500)
         basic.showNumber(game.score())
+    } else {
+        music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.OnceInBackground)
     }
     
 })
@@ -36,11 +43,11 @@ function animationCarre() {
             . . . . .
             . . . . .
     `)
-    pause(50)
+    pause(25)
     basic.showIcon(IconNames.SmallSquare)
-    pause(50)
+    pause(25)
     basic.showIcon(IconNames.Square)
-    pause(50)
+    pause(25)
 }
 
 //  -----------DBEUT CONFIG DEVICE--------------
@@ -101,15 +108,28 @@ input.onButtonPressed(Button.B, function on_button_pressed_b() {
 //  -----------FIN CONFIG DEVICE----------------
 //  à la réception on va savoir si c'est juste ou pas 
 radio.onReceivedValue(function on_received_value(name: string, value: number) {
+    
     if (attente_reponse) {
         if (name == id2 && value == 1) {
             game.addScore(1)
-            music.startMelody(music.builtInMelody(Melodies.PowerUp), 120)
+            music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.OnceInBackground)
+            basic.showIcon(IconNames.Yes)
         } else if (name == id2 && value == 0) {
-            music.startMelody(music.builtInMelody(Melodies.PowerDown), 120)
+            music.startMelody(music.builtInMelody(Melodies.Wawawawaa), MelodyOptions.OnceInBackground)
+            basic.showIcon(IconNames.No)
+        } else if (name != id2 && value == 1) {
+            basic.showIcon(IconNames.No)
         }
         
         game.showScore()
+    } else if (name == "ALL" && value == 0) {
+        // c'est le reset
+        game.setScore(0)
     }
     
+    attente_reponse = false
+})
+input.onLogoEvent(TouchButtonEvent.Pressed, function on_logo_event_pressed() {
+    
+    attente_reponse = false
 })
