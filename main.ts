@@ -21,11 +21,11 @@ basic.forever(function on_forever() {
 input.onPinPressed(TouchPin.P0, function on_pin_pressed_p0() {
     
     if (!attente_reponse) {
-        radio.sendValue(id2, 1)
+        radio.sendValue(id2, 10)
         attente_reponse = true
         soundExpression.spring.playUntilDone()
         // music.start_melody(music.built_in_melody(Melodies.PUNCHLINE), MelodyOptions.ONCE_IN_BACKGROUND)
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 2; i++) {
             animationCarre()
         }
         pause(500)

@@ -26,11 +26,11 @@ basic.forever(on_forever)
 def on_pin_pressed_p0():
     global attente_reponse, id2
     if not (attente_reponse):
-        radio.send_value(id2, 1)
+        radio.send_value(id2, 10)
         attente_reponse = True
         soundExpression.spring.play_until_done()
         #music.start_melody(music.built_in_melody(Melodies.PUNCHLINE), MelodyOptions.ONCE_IN_BACKGROUND)
-        for i in range(6):
+        for i in range(2):
             animationCarre()
         pause(500)
         basic.show_number(game.score())
