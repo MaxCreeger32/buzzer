@@ -111,16 +111,21 @@ def on_received_value(name, value):
             game.add_score(1)
             music.start_melody(music.built_in_melody(Melodies.POWER_UP), MelodyOptions.ONCE_IN_BACKGROUND)
             basic.show_icon(IconNames.YES)
+            attente_reponse=False
         elif name == id2 and value == 0:
             music.start_melody(music.built_in_melody(Melodies.WAWAWAWAA), MelodyOptions.ONCE_IN_BACKGROUND)
             basic.show_icon(IconNames.NO)
+            attente_reponse=False
         elif name != id2 and value == 1:
             basic.show_icon(IconNames.NO)
-        game.show_score()
+            attente_reponse=False
+        # si rien ne correspond on ne doit rien faire mais rester en attente
+
     elif name=="ALL" and value== 0:
         #c'est le reset
         game.set_score(0)
-    attente_reponse=False        
+        attente_reponse=False
+            
 radio.on_received_value(on_received_value)
 
 def on_logo_event_pressed():

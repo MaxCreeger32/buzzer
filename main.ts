@@ -114,20 +114,23 @@ radio.onReceivedValue(function on_received_value(name: string, value: number) {
             game.addScore(1)
             music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.OnceInBackground)
             basic.showIcon(IconNames.Yes)
+            attente_reponse = false
         } else if (name == id2 && value == 0) {
             music.startMelody(music.builtInMelody(Melodies.Wawawawaa), MelodyOptions.OnceInBackground)
             basic.showIcon(IconNames.No)
+            attente_reponse = false
         } else if (name != id2 && value == 1) {
             basic.showIcon(IconNames.No)
+            attente_reponse = false
         }
         
-        game.showScore()
     } else if (name == "ALL" && value == 0) {
+        //  si rien ne correspond on ne doit rien faire mais rester en attente
         // c'est le reset
         game.setScore(0)
+        attente_reponse = false
     }
     
-    attente_reponse = false
 })
 input.onLogoEvent(TouchButtonEvent.Pressed, function on_logo_event_pressed() {
     
