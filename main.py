@@ -26,7 +26,7 @@ basic.forever(on_forever)
 def on_pin_pressed_p0():
     global attente_reponse, id2
     if not (attente_reponse):
-        radio.send_value(id2, 10)
+        radio.send_value(id2, 5)
         attente_reponse = True
         soundExpression.spring.play_until_done()
         #music.start_melody(music.built_in_melody(Melodies.PUNCHLINE), MelodyOptions.ONCE_IN_BACKGROUND)
