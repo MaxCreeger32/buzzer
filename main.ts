@@ -2,7 +2,7 @@
 let config = false
 let id2 = ""
 game.setScore(0)
-radio.setGroup(1)
+radio.setGroup(10)
 radio.setTransmitPower(7)
 id2 = "A"
 music.setBuiltInSpeakerEnabled(true)

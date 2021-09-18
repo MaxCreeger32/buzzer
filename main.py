@@ -6,7 +6,7 @@ démarrage
 config = False
 id2 = ""
 game.set_score(0)
-radio.set_group(1)
+radio.set_group(10)
 radio.set_transmit_power(7)
 id2 = "A"
 music.set_built_in_speaker_enabled(True)
