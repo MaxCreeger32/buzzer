@@ -1,6 +1,7 @@
 /** démarrage */
 let config = false
 let id2 = ""
+radio.setFrequencyBand(83)
 game.setScore(0)
 radio.setGroup(10)
 radio.setTransmitPower(7)

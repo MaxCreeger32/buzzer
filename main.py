@@ -5,6 +5,7 @@ démarrage
 """
 config = False
 id2 = ""
+radio.set_frequency_band(83)
 game.set_score(0)
 radio.set_group(10)
 radio.set_transmit_power(7)
