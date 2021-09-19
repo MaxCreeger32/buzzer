@@ -120,7 +120,7 @@ radio.onReceivedValue(function on_received_value(name: string, value: number) {
             music.startMelody(music.builtInMelody(Melodies.Wawawawaa), MelodyOptions.OnceInBackground)
             basic.showIcon(IconNames.No)
             attente_reponse = false
-        } else if (name != id2 && value == 1) {
+        } else if (name != id2 && value <= 1) {
             basic.showIcon(IconNames.No)
             attente_reponse = false
         }

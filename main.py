@@ -117,9 +117,10 @@ def on_received_value(name, value):
             music.start_melody(music.built_in_melody(Melodies.WAWAWAWAA), MelodyOptions.ONCE_IN_BACKGROUND)
             basic.show_icon(IconNames.NO)
             attente_reponse=False
-        elif name != id2 and value == 1:
+        elif name != id2 and value <= 1:
             basic.show_icon(IconNames.NO)
             attente_reponse=False
+        
         # si rien ne correspond on ne doit rien faire mais rester en attente
 
     elif name=="ALL" and value== 0:
